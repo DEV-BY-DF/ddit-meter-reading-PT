@@ -1,1 +1,66 @@
 
+/* Basiseinstellungen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.main-header {
+    background-color: #3c3732;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navigation */
+.primary-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+/* Formular */
+.form-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* FAQ */
+.accordion {
+    margin: 30px 0;
+}
+
+.accordion-header {
+    background: #f5f5f5;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.accordion-content {
+    padding: 10px;
+    display: none;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #3c3732;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
