@@ -1,69 +1,102 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Seitentitel]</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Zählerstand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- Header -->
-    <header class="main-header">
-        <h1>[Unternehmenslogo]</h1>
-        <nav class="primary-nav">
-            <ul>
-                <li><a href="#">Start</a></li>
-                <li><a href="#">Service & Hilfe</a></li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
+<body id="top">
 
-    <!-- Hauptinhalt -->
-    <main>
-        <!-- Formular-Section -->
-        <section class="form-section">
-            <h2>Zählerstand melden</h2>
-            <form id="meterForm">
-                <div class="form-group">
-                    <label for="meterNumber">Zählernummer:</label>
-                    <input type="text" id="meterNumber" placeholder="Ihre Zählernummer">
-                </div>
-                <div class="form-group">
-                    <label for="meterReading">Zählerstand:</label>
-                    <input type="number" id="meterReading" placeholder="Aktueller Stand">
-                </div>
-                <button type="submit">Abschicken</button>
-            </form>
-        </section>
 
-        <!-- FAQ-Section -->
-        <section class="faq-section">
-            <h2>Häufige Fragen</h2>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">[FAQ Frage 1]</button>
-                    <div class="accordion-content">
-                        <p>[FAQ Antwort 1]</p>
-                    </div>
-                </div>
-                <!-- Mehr FAQ-Items -->
-            </div>
-        </section>
-    </main>
+  <!-- Logo & Kopfzeile -->
+  <header>
+    <div class="logo-container">
+      <img src="swLogo.png" alt="Stadtwerke Logo" class="logo">
+    </div>
+    <div class="header-bar"></div>
+  </header>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <p>&copy; [Unternehmen] [Jahr]</p>
-        <nav class="footer-nav">
-            <ul>
-                <li><a href="#">Impressum</a></li>
-                <li><a href="#">Datenschutz</a></li>
-            </ul>
-        </nav>
-    </footer>
+  <!-- Hauptinhalt -->
+  <main class="container" role="main">
+    <h1>Zählerstand</h1>
+    <form id="meterForm" autocomplete="off" novalidate>
+      <fieldset>
+        <legend>Angaben</legend>
 
-    <!-- Skripte -->
-    <script src="scripts.js"></script>
+        <label for="customerId">Kundennummer *</label>
+        <input type="text" id="customerId" name="customerId" maxlength="10" pattern="\d{6,10}" required autocomplete="off" aria-describedby="customerIdHelp">
+        <small id="customerIdHelp">6–10 Ziffern</small>
+
+        <label for="meterId">Zählernummer *</label>
+        <input type="text" id="meterId" name="meterId" maxlength="7" pattern="\d{5,7}" required autocomplete="off" aria-describedby="meterIdHelp">
+        <small id="meterIdHelp">5–7 Ziffern</small>
+
+        <label for="reading">Zählerstand *</label>
+        <input type="text" id="reading" name="reading" pattern="^\d+(\.\d{1,2})?$" required autocomplete="off" aria-describedby="readingHelp">
+        <small id="readingHelp">Nur Zahlen, Dezimalpunkt erlaubt (max. 2 Nachkommastellen)</small>
+
+        <label for="date">Ablesedatum *</label>
+        <input type="date" id="date" name="date" required autocomplete="off">
+
+        <div class="buttons">
+          <button type="button" id="backBtn">Zurück zum Kundenportal</button>
+          <button type="submit">Daten absenden</button>
+        </div>
+      </fieldset>
+    </form>
+    <div id="result" tabindex="0" aria-live="polite"></div>
+    <div class="form-hint"><span class="required-star">*</span> Pflichtfeld</div>
+  </main>
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <h4>HIER FINDEN SIE UNS</h4>
+      <p>Prototyp Stadtwerke GmbH<br>
+      Energetische Straße 1<br>
+      01000 Kraftstadt</p>
+    </div>
+    <div>
+      <h4>UNSERE ÖFFNUNGSZEITEN</h4>
+      <p>Montag, Dienstag<br>8:00 - 16:00 Uhr<br><br>
+      Donnerstag<br>8:00 - 18:00 Uhr<br><br>
+      Freitag<br>8:00 - 13:00 Uhr<br><br>
+      sowie nach Vereinbarung</p>
+    </div>
+    <div>
+      <h4>KONTAKT</h4>
+      <p>Telefon: +49 351 11111-0<br>
+      Telefax: +49 351 11111-151<br>
+      E-Mail: <a href="mailto:info@PT-Stadtwerke.de">info@PT-Stadtwerke.de</a></p>
+    </div>
+    <div>
+      <h4>WEITERE INFORMATIONEN</h4>
+      <p>
+        <a href="#">PT Stadtwerke</a><br>
+        <a href="#">Service</a><br>
+        <a href="#">Kontakt & Ansprechpartner</a><br>
+        <a href="#">Info-Center</a><br>
+        <a href="#">Karriere</a><br>
+        <a href="#">Impressum</a><br>
+        <a href="#">Datenschutz</a><br>
+        <a href="#">Links</a><br>
+        <a href="#">Sitemap</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <a href="#top" class="scroll-top">&#8679; Nach oben</a>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Vanilla JS: Navigation für Zurück-Button
+    document.getElementById('backBtn').addEventListener('click', function() {
+      window.location.href = '/'; // Passe ggf. die Ziel-URL an
+    });
+  </script>
+  
 </body>
 </html>
