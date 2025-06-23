@@ -65,19 +65,4 @@ document.getElementById('meterForm').addEventListener('submit', function (e) {
   });
 });
 
-function showError(fieldId, message) {
-  const input = document.getElementById(fieldId);
-  const error = document.createElement('div');
-  error.className = 'error-msg';
-  error.setAttribute('role', 'alert');
-  error.style.color = '#c00';
-  error.style.fontSize = '0.92em';
-  error.textContent = message;
-  input.insertAdjacentElement('afterend', error);
-}
-  error.setAttribute('role', 'alert');
-  error.style.color = '#c00';
-  error.style.fontSize = '0.92em';
-  error.textContent = message;
-  input.insertAdjacentElement('afterend', error);
-}
+
