@@ -1,234 +1,189 @@
-body {
-    background: #f9f9f9;
-    font-family: "Segoe UI", sans-serif;
-    padding: 4rem 0; /* Abstand oben/unten erhöht, seitlich entfernt */
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center; /* Zentriert den Inhalt horizontal */
-}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zählerstand melden</title>
+  <style>
+    body {
+      background: #effaf0;
+      font-family: "Segoe UI", sans-serif;
+      padding: 4rem 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+    }
 
-.container {
-    max-width: 540px;
-    width: 100%;
-    background: white;
-    margin: 2rem auto;
-    padding: 2.5rem 2.5rem 2rem 2.5rem; /* mehr Innenabstand */
-    border-radius: 12px;
-    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
-    box-sizing: border-box;
-    /* zentriert durch body align-items */
-}
+    .container {
+      max-width: 540px;
+      width: 100%;
+      background: white;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+    }
 
-header {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .header-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #2ea44f;
+      border-radius: 8px 8px 0 0;
+    }
 
-.logo-container {
-  padding: 1.5rem 0 1rem 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      color: #17632f;
+    }
 
-.logo {
-  height: 120px;
-  object-fit: contain;
-}
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      color: #17632f;
+    }
 
-.header-bar {
-  width: 100%;
-  height: 20px;
-  background-color: #0a9a51;
-}
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      background: #f1fdf3;
+      border: 1px solid #9cddb2;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #18472c;
+    }
 
-h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.4rem;
-  color: #333;
-}
+    input:focus {
+      border-color: #2ea44f;
+      box-shadow: 0 0 0 2px rgba(46, 164, 79, 0.25);
+      outline: none;
+    }
 
-label {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 0.1rem;
-  color: #333;
-}
+    button {
+      background: #2ea44f;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
 
-input {
-  width: 100%;
-  padding: 0.6rem;
-  background: #fff8d6;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 0.2rem;
-  margin-bottom: 0.2rem;
-  font-size: 1rem;
-}
+    button:hover {
+      background: #228a3a;
+    }
 
-small {
-  display: block;
-  color: #888;
-  margin-bottom: 0.7rem;
-  margin-left: 2px;
-  font-size: 0.92em;
-}
+    .error-msg {
+      color: #c60000;
+      font-size: 0.92rem;
+      margin: 0.2rem 0 0.8rem;
+    }
 
-fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
+    #result {
+      margin-top: 2rem;
+      background: #e3fbe7;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #a9e7b8;
+      color: #144a2c;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar"></div>
+    <h1>Zählerstand melden</h1>
+    <form id="meterForm">
+      <label for="customerId">Kundennummer</label>
+      <input id="customerId" type="text" required />
 
-legend {
-  font-weight: bold;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #7a9a01;
-}
+      <label for="meterId">Zählernummer</label>
+      <input id="meterId" type="text" required />
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
+      <label for="reading">Zählerstand</label>
+      <input id="reading" type="text" required />
 
-button {
-  background: #7a9a01;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-}
+      <label for="date">Ablesedatum</label>
+      <input id="date" type="date" required />
 
-button:hover {
-  background: #678300;
-}
+      <button type="submit">Absenden</button>
+    </form>
+    <div id="result"></div>
+  </div>
 
-#result {
-  margin-top: 2rem;
-  background: #eef7e2;
-  padding: 1rem;
-  border-radius: 6px;
-  border: 1px solid #cde2b4;
-}
+  <script>
+    function showError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const error = document.createElement('div');
+      error.className = 'error-msg';
+      error.textContent = message;
+      field.parentNode.insertBefore(error, field.nextSibling);
+    }
 
-.footer {
-  background-color: #f5f5f5;
-  color: #222;
-  padding: 3rem 2rem 1rem;
-  font-size: 0.95rem;
-  border-top: 2px solid #ddd;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    document.getElementById('meterForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.querySelectorAll('.error-msg').forEach(el => el.remove());
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 1rem;
-}
+      const customerId = document.getElementById('customerId').value.trim();
+      const meterId = document.getElementById('meterId').value.trim();
+      const reading = document.getElementById('reading').value.trim();
+      const date = document.getElementById('date').value;
 
-.footer h4 {
-  font-size: 1rem;
-  margin-bottom: 0.6rem;
-  color: #000;
-}
+      let valid = true;
 
-.footer a {
-  color: #a00000;
-  text-decoration: none;
-}
+      if (!/^\d{6,10}$/.test(customerId)) {
+        showError('customerId', 'Bitte 6–10 Ziffern eingeben.');
+        valid = false;
+      }
+      if (!/^\d{5,7}$/.test(meterId)) {
+        showError('meterId', 'Bitte 5–7 Ziffern eingeben.');
+        valid = false;
+      }
+      if (!/^\d+(\.\d{1,2})?$/.test(reading)) {
+        showError('reading', 'Nur Zahlen, Dezimalpunkt erlaubt (max. 2 Nachkommastellen).');
+        valid = false;
+      }
+      if (date === "") {
+        showError('date', 'Bitte ein Datum wählen.');
+        valid = false;
+      }
 
-.footer a:hover {
-  text-decoration: underline;
-}
+      if (!valid) return;
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ddd;
-  font-size: 0.85rem;
-}
+      const payload = new URLSearchParams();
+      payload.append('customerId', customerId);
+      payload.append('meterId', meterId);
+      payload.append('reading', reading);
+      payload.append('date', date);
 
-.scroll-top {
-  display: inline-block;
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.scroll-top:hover {
-  text-decoration: underline;
-}
-
-/* Hinweis-Stil */
-.form-hint {
-  margin-top: 1.2rem;
-  color: #222;
-  font-size: 0.98rem;
-  text-align: left;
-  max-width: 540px;
-  width: 100%;
-  font-weight: 500;
-}
-
-.required-star {
-  color: #333;
-  font-weight: bold;
-  margin-right: 0.2em;
-}
-
-/* Mobile-Optimierung + Seitenränder für Footer */
-@media (max-width: 768px) {
-  body {
-    padding: 1.5rem 0;
-  }
-
-  .container {
-    margin: 1rem auto;
-    padding: 1.2rem;
-    max-width: 98vw;
-  }
-
-  header {
-    max-width: 98vw;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 0;
-  }
-
-  .footer h4 {
-    margin-top: 1.5rem;
-  }
-
-  .buttons {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  button {
-    width: 100%;
-  }
-}
-}
-}
+      fetch('http://itvdev054.dresden-it.de/falkus/index.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: payload
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('result').innerHTML = `
+          ✅ <strong>Erfolg:</strong><br>${data}
+        `;
+        document.getElementById('meterForm').reset();
+      })
+      .catch(error => {
+        document.getElementById('result').innerHTML = `
+          ❌ <strong>Fehler:</strong><br>Die Übermittlung ist fehlgeschlagen. Bitte später erneut versuchen.
+        `;
+      });
+    });
+  </script>
+</body>
+</html>
