@@ -65,36 +65,34 @@ document.getElementById('meterForm').addEventListener('submit', function (e) {
   });
   */
 
-  // einfache POST-Variante an Test-Backend
-  const payload = {
-    customerId,
-    meterId,
-    reading,
-    date
-  };
+ const payload = new URLSearchParams();
+payload.append('customerId', customerId);
+payload.append('meterId', meterId);
+payload.append('reading', reading);
+payload.append('date', date);
 
-  fetch('itvdev054.dresden-it.de/falkus/index.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('result').innerHTML = `
-      <h3>Backend-Antwort</h3>
-      <pre>${JSON.stringify(data, null, 2)}</pre>
-    `;
-    this.reset();
-  })
-  .catch(error => {
-    document.getElementById('result').innerHTML = `
-      <h3>Fehler</h3>
-      <p>Die Übermittlung ist fehlgeschlagen. Bitte versuchen Sie es später erneut.</p>
-    `;
-  });
+fetch('http://itvdev054.dresden-it.de/falkus/index.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: payload
+})
+.then(response => response.text())
+.then(data => {
+  document.getElementById('result').innerHTML = `
+    <h3>Backend-Antwort</h3>
+    <pre>${data}</pre>
+  `;
+  document.getElementById('meterForm').reset();
+})
+.catch(error => {
+  document.getElementById('result').innerHTML = `
+    <h3>Fehler</h3>
+    <p>Die Übermittlung ist fehlgeschlagen. Bitte versuchen Sie es später erneut.</p>
+  `;
 });
+
 
 function showError(fieldId, message) {
   const input = document.getElementById(fieldId);
