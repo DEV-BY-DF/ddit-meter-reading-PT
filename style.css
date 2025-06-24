@@ -1,5 +1,5 @@
 body {
-    background: #f9e9d9;
+    background: #f9f9f9;
     font-family: "Segoe UI", sans-serif;
     padding: 4rem 0; /* Abstand oben/unten erhöht, seitlich entfernt */
     margin: 0;
@@ -45,7 +45,7 @@ header {
 .header-bar {
   width: 100%;
   height: 20px;
-  background-color: #7a9a01;
+  background-color: #0a9a51;
 }
 
 h1 {
