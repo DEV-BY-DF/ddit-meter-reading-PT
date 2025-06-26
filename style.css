@@ -1,12 +1,12 @@
 body {
     background: #f9f9f9;
     font-family: "Segoe UI", sans-serif;
-    padding: 4rem 0; /* Abstand oben/unten erhöht, seitlich entfernt */
+    padding: 4rem 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    align-items: center; /* Zentriert den Inhalt horizontal */
+    align-items: center; 
 }
 
 .container {
@@ -14,11 +14,11 @@ body {
     width: 100%;
     background: white;
     margin: 2rem auto;
-    padding: 2.5rem 2.5rem 2rem 2.5rem; /* mehr Innenabstand */
+    padding: 2.5rem 2.5rem 2rem 2.5rem; 
     border-radius: 12px;
     box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
-    /* zentriert durch body align-items */
+    
 }
 
 header {
@@ -178,7 +178,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Hinweis-Stil */
+
 .form-hint {
   margin-top: 1.2rem;
   color: #222;
@@ -195,7 +195,7 @@ button:hover {
   margin-right: 0.2em;
 }
 
-/* Mobile-Optimierung + Seitenränder für Footer */
+
 @media (max-width: 768px) {
   body {
     padding: 1.5rem 0;
@@ -229,6 +229,3 @@ button:hover {
   button {
     width: 100%;
   }
-}
-}
-}
