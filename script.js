@@ -1,8 +1,8 @@
 document.getElementById('meterForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
-  // Fehlerhinweise entfernen
-  document.querySelectorAll('.error-msg').forEach(el => el.remove());
+
+  document.querySelectorAll('.error-msg').forEach(el => el.remove());          // Variablendefinition für die 4 Feldwerte
 
   const customerId = document.getElementById('customerId').value.trim();
   const meterId = document.getElementById('meterId').value.trim();
@@ -10,7 +10,7 @@ document.getElementById('meterForm').addEventListener('submit', function (e) {
   const date = document.getElementById('date').value;
 
   let valid = true;
-
+                                                                            // Logik - Fehlermeldung bei inkorrekter Eingabe
   if (!/^\d{6,10}$/.test(customerId)) {
     showError('customerId', 'Bitte 6–10 Ziffern eingeben.');
     valid = false;
@@ -30,29 +30,29 @@ document.getElementById('meterForm').addEventListener('submit', function (e) {
 
   if (!valid) return;
 
-  // Mapping auf ServiceNow-Tabellenfelder
-  const payload = {
+                                                                                          // Logik ServiceNow Table-API
+  const payload = {                                                                      // Payload mit Feldzuweisung im Ziel-Table
     u_customer_number: customerId,
     u_meter_number: meterId,
     u_meter_reading: reading,
     u_meter_reading_date: date
-  };
+  };                                                                                
 
-  fetch('/api/meter', {
+  fetch('/api/meter', {                                                                    //fetch Beispiel POST befehl type json, auth über middleserver, kein Auth im Frontend. Basic Auth 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(payload)
   })
-  .then(response => {
+  .then(response => {                                                                      //Fehlermeldung wenn nicht erfolgreich
     if (!response.ok) throw new Error('Fehler beim Senden');
     return response.json();
   })
   .then(data => {
     document.getElementById('result').innerHTML = `
       <h3>Bestätigung</h3>
-      <p>Ihre Daten wurden erfolgreich übermittelt.</p>
+      <p>Ihre Daten wurden erfolgreich übermittelt.</p>                                    //Erfolgsmeldung wenn erfolgreich
     `;
     // Formular zurücksetzen
     this.reset();
