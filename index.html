@@ -25,19 +25,19 @@
         <legend>Angaben</legend>
 
         <label for="customerId">Kundennummer *</label>
-        <input type="text" id="customerId" name="customerId" maxlength="10" pattern="\d{6,10}" required autocomplete="off" aria-describedby="customerIdHelp">
+        <input type="text" id="customerId" name="customerId" maxlength="10" pattern="\d{6,10}" required autocomplete="off" aria-label="Kundennummer">
         <small id="customerIdHelp">6–10 Ziffern</small>
 
         <label for="meterId">Zählernummer *</label>
-        <input type="text" id="meterId" name="meterId" maxlength="7" pattern="\d{5,7}" required autocomplete="off" aria-describedby="meterIdHelp">
+        <input type="text" id="meterId" name="meterId" maxlength="7" pattern="\d{5,7}" required autocomplete="off" aria-label="Zählernummer">
         <small id="meterIdHelp">5–7 Ziffern</small>
 
         <label for="reading">Zählerstand *</label>
-        <input type="text" id="reading" name="reading" pattern="^\d+(\.\d{1,2})?$" required autocomplete="off" aria-describedby="readingHelp">
-        <small id="readingHelp">Nur Zahlen, Dezimalpunkt erlaubt (max. 2 Nachkommastellen)</small>
+        <input type="text" id="reading" name="reading" pattern="^\d+(\.\d{1,3})?$" required autocomplete="off" aria-label="Zählerstand">
+        <small id="readingHelp">Nur Zahlen, Dezimalpunkt erlaubt (max. 3 Nachkommastellen)</small>
 
         <label for="date">Ablesedatum *</label>
-        <input type="date" id="date" name="date" required autocomplete="off">
+        <input type="date" id="date" name="date" required autocomplete="off" aria-label="Datumsangabe">
 
         <div class="buttons">
           <button type="button" id="backBtn">Zurück zum Kundenportal</button>
@@ -48,7 +48,7 @@
     <div id="result" tabindex="0" aria-live="polite"></div>
     <div class="form-hint"><span class="required-star">*</span> Pflichtfeld</div>
   </main>
-<footer class="footer">
+<footer class="footer" aria-label="website-footer">
   <div class="footer-grid">
     <div>
       <h4>HIER FINDEN SIE UNS</h4>
